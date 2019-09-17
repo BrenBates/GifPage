@@ -12,6 +12,9 @@ let activeGifs = [];
 
 function displayCharacterInfo() { 
 
+     stillGifs  = [];
+     activeGifs = [];
+
     $('#gifSpace').empty();
         var char = $(this).attr("data-name");
         var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=jKS8KF927EtiidzhKfsudaJ7tx8fyb0g&q=" + char + "&limit=10&offset=0&rating=PG-13&lang=en";
