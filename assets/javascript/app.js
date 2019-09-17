@@ -25,11 +25,9 @@ function displayCharacterInfo() {
           method: "GET"
         }).then(function(response) {
 
-            console.log(response);
-            console.log(queryURL);
 
             for(j=0;j<response.data.length;j++) {
-                console.log(response.data[j].images.fixed_height_still.url);
+               
                 newGif = $('<img>');
                 newGif.addClass('gif');
                 newGif.addClass('stillGif');
@@ -47,8 +45,7 @@ function displayCharacterInfo() {
                 activeGifs.push(movingGifURL);
 
             }
-            console.log(stillGifs);
-            console.log(activeGifs);
+          
         });
 
       
