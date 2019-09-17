@@ -28,13 +28,17 @@ function displayCharacterInfo() {
 
             for(j=0;j<response.data.length;j++) {
                
+
+                gifDiv = $('<div>');
+                gifDiv.addClass('gifDiv');
                 newGif = $('<img>');
                 newGif.addClass('gif');
                 newGif.addClass('stillGif');
                 newGif.attr('id',[j]);
                 stillGifURL = response.data[j].images.fixed_height_still.url;
                 newGif.attr('src', stillGifURL);
-                $('#gifSpace').append(newGif);
+                gifDiv.append(newGif);
+                $('#gifSpace').append(gifDiv);
 
                 //push the still gif url to the still gifs array
                 stillGifs.push(stillGifURL);
@@ -53,6 +57,8 @@ function displayCharacterInfo() {
 
 
 function toggleStillness() {
+
+    console.log(this);
 
     //using the id given to the gifs as an index for accessing the still or active gif arrays.
     index = $(this).attr('id');
