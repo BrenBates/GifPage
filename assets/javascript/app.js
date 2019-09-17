@@ -6,6 +6,8 @@
 $(document).ready(function () {
 
 let characterList = ['Jon Snow', 'Daenerys Targaryen', 'Arya Stark', 'Sandor Clegane', 'Tormund Giantsbane', 'Samwell Tarley'];
+let stillGifs  = [];
+let activeGifs = [];
 
 
 function displayCharacterInfo() { 
@@ -20,36 +22,37 @@ function displayCharacterInfo() {
           method: "GET"
         }).then(function(response) {
 
-
-
             console.log(response);
             console.log(queryURL);
 
             for(j=0;j<response.data.length;j++) {
-                console.log(response.data[j].images.original.url);
+                console.log(response.data[j].images.fixed_height_still.url);
                 newGif = $('<img>');
-                newGif.attr('src', response.data[j].images.original.url);
+                newGif.addClass('gif');
+                newGif.attr('id',[j]);
+                stillGifURL = response.data[j].images.fixed_height_still.url;
+                newGif.attr('src', stillGifURL);
                 $('#gifSpace').append(newGif);
 
-            }
-          
-          // Creates a div to hold the movie
-          // Retrieves the Rating Data
-          // Creates an element to have the rating displayed
-          // Displays the rating
-          // Retrieves the release year
-          // Creates an element to hold the release year
-          // Displays the release year
-          // Retrieves the plot
-          // Creates an element to hold the plot
-          // Appends the plot
-          // Creates an element to hold the image
-          // Appends the image
-          // Puts the entire Movie above the previous movies.
+                //push the still gif url to the still gifs array
+                stillGifs.push(stillGifURL);
 
+                //push the url for the moving gif to t he activeGifs array
+
+                movingGifURL = response.data[j].images.fixed_height.url;
+                activeGifs.push(movingGifURL);
+
+            }
+            console.log(stillGifs);
+            console.log(activeGifs);
         });
 
       
+}
+
+
+function toggleStillness() {
+    console.log(this);
 }
 
 function renderButtons() { 
@@ -81,6 +84,8 @@ for(i=0;i<characterList.length;i++) {
 
       // Adding click event listeners to all elements with a class of "movie"
       $(document).on("click", ".char", displayCharacterInfo);
+
+      $(document).on("click", ".gif", toggleStillness);
 
       // Calling the renderButtons function to display the intial buttons
       renderButtons();
