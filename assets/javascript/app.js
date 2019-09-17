@@ -29,6 +29,7 @@ function displayCharacterInfo() {
                 console.log(response.data[j].images.fixed_height_still.url);
                 newGif = $('<img>');
                 newGif.addClass('gif');
+                newGif.addClass('stillGif');
                 newGif.attr('id',[j]);
                 stillGifURL = response.data[j].images.fixed_height_still.url;
                 newGif.attr('src', stillGifURL);
@@ -52,7 +53,23 @@ function displayCharacterInfo() {
 
 
 function toggleStillness() {
-    console.log(this);
+
+    //using the id given to the gifs as an index for accessing the still or active gif arrays.
+    index = $(this).attr('id');
+
+    //If statement to change from still gif to active gif.  Else if to change from active gif to still gif.
+
+    if($(this).hasClass('stillGif')) {
+
+        $(this).attr('src', activeGifs[index]);
+        $(this).removeClass('stillGif');
+
+    } else if($(this).hasClass('stillGif') === false) {
+
+        $(this).attr('src', stillGifs[index]);
+        $(this).addClass('stillGif');
+    }
+
 }
 
 function renderButtons() { 
