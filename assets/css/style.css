@@ -1,3 +1,9 @@
 body { 
     background-color: lightseagreen;
 }
+
+
+.gifDiv { 
+    float: left;
+    margin: 1% 1% 1% 1%;
+}
