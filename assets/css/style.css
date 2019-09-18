@@ -1,9 +1,23 @@
 body { 
-    background-color: lightseagreen;
+    background-color: whitesmoke;
 }
 
 
 .gifDiv { 
     float: left;
-    margin: 1% 1% 1% 1%;
+    margin: 0.5% 0.5% 0.5% 0.5%;
+    text-align: center;
+    font-weight: bold;
+}
+
+button, #add-char { 
+    text-decoration: none;
+    color: white; 
+    background-color: lightseagreen;
+    margin-right: 0.5%;
+    border-radius: 0.3em;
+}
+
+#buttonHeader { 
+    margin-left: 0.5%;
 }
