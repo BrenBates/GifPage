@@ -16,8 +16,8 @@ $(document).ready(function () {
         activeGifs = [];
 
         $('#gifSpace').empty();
-        var char = $(this).attr("data-name");
-        var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=jKS8KF927EtiidzhKfsudaJ7tx8fyb0g&q=" + char + "&limit=10&offset=0&rating=PG-13&lang=en";
+        let char = $(this).attr("data-name");
+        let queryURL = "https://api.giphy.com/v1/gifs/search?api_key=jKS8KF927EtiidzhKfsudaJ7tx8fyb0g&q=" + char + "&limit=10&offset=0&rating=PG-13&lang=en";
 
         // Creates AJAX call for the specific character button being clicked
 
@@ -27,17 +27,17 @@ $(document).ready(function () {
         }).then(function (response) {
 
 
-            for (j = 0; j < response.data.length; j++) {
+            for (let j = 0; j < response.data.length; j++) {
 
 
-                gifDiv = $('<div>');
+                let gifDiv = $('<div>');
                 gifDiv.addClass('gifDiv');
-                gifRating = 'Rated: ' + response.data[j].rating.toUpperCase();
-                newGif = $('<img>');
+                let gifRating = 'Rated: ' + response.data[j].rating.toUpperCase();
+                let newGif = $('<img>');
                 newGif.addClass('gif');
                 newGif.addClass('stillGif');
                 newGif.attr('id', [j]);
-                stillGifURL = response.data[j].images.fixed_height_still.url;
+                let stillGifURL = response.data[j].images.fixed_height_still.url;
                 newGif.attr('src', stillGifURL);
                 gifDiv.append(gifRating + '<br>', newGif);
                 $('#gifSpace').append(gifDiv);
@@ -47,7 +47,7 @@ $(document).ready(function () {
 
                 //push the url for the moving gif to t he activeGifs array
 
-                movingGifURL = response.data[j].images.fixed_height.url;
+                let movingGifURL = response.data[j].images.fixed_height.url;
                 activeGifs.push(movingGifURL);
 
             }
@@ -63,7 +63,7 @@ $(document).ready(function () {
 
 
         //using the id given to the gifs as an index for accessing the still or active gif arrays.
-        index = $(this).attr('id');
+        let index = $(this).attr('id');
 
         //If statement to change from still gif to active gif.  Else if to change from active gif to still gif.
 
@@ -83,7 +83,7 @@ $(document).ready(function () {
     function renderButtons() {
 
         $("#buttonHeader").empty();
-        for (i = 0; i < characterList.length; i++) {
+        for (let i = 0; i < characterList.length; i++) {
 
             let newButton = $('<button>');
             newButton.addClass("char");
@@ -98,7 +98,7 @@ $(document).ready(function () {
     $("#add-char").on("click", function (event) {
         event.preventDefault();
         // This line of code will grab the input from the textbox
-        var character = $("#char-input").val().trim();
+        let character = $("#char-input").val().trim();
 
         // The character from the textbox is then added to our array
         characterList.push(character);
